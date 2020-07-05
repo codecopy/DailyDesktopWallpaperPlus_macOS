@@ -1,7 +1,7 @@
 ![Screenshot](https://github.com/pgc062020/DailyDesktopWallpaperPlus/blob/master/128.png)
-# DailyDesktopWallpaperPlus
+# DailyDesktopWallpaperPlus (Version for macOS)
 
-## A Utility to download and set Bing's or Windows Spotlight's daily photo as your wallpaper on your Linux-Desktop.
+## DailyDesktopWallpaperPlus is a Utility to download and set Bing's or Windows Spotlight's daily photo as your wallpaper on your Mac.
 
 #### Visit Projectsite on SourceForge: 
 <a href="https://sourceforge.net/projects/dailydesktopwallpaperplus/"><img alt="Download gmorgan" src="https://sourceforge.net/sflogo.php?type=17&group_id=96355" width=200></a>
@@ -11,22 +11,10 @@
  * Download Bing's daily photo from 10 Countries and set automatically as your wallpaper.
  * Download and set the daily photos of Windows Spotlight automatically as your wallpaper.
  * Load and set existing Wallpapers.
- * Automatic change of the wallpaper which are downloaded on different Desktops:
-    * Trinity Desktop Environment
-    * K Desktop Environment v3.x
-    * KDE Plasma 5
-    * Cinnamon
-    * Gnome
-    * XFCE4
-    * MATE
-    * LXDE
-    * Budgie
-    * Deepin Desktop Environment
-
+ * Automatic change of the wallpaper.
 
 #### Get the latest build of DailyDesktopWallpaperPlus:<br />
-<a href="https://sourceforge.net/projects/dailydesktopwallpaperplus/files/Linux/"><img alt="Download gmorgan" src="https://a.fsdn.com/con/app/sf-download-button" width=276 height=48 srcset="https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x"></a>
-
+<a href="https://sourceforge.net/projects/dailydesktopwallpaperplus/files/latest/download"><img alt="Download gmorgan" src="https://a.fsdn.com/con/app/sf-download-button" width=276 height=48 srcset="https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x"></a>
 
 
 #### Donate if you want:
@@ -59,3 +47,5 @@ run the Application:
 DailyDesktopWallpaperPlus
 ``` 
 #### Screenshots: https://sourceforge.net/projects/dailydesktopwallpaperplus/
+
+#### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
