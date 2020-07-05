@@ -48,4 +48,4 @@ DailyDesktopWallpaperPlus
 ``` 
 #### Screenshots: https://sourceforge.net/projects/dailydesktopwallpaperplus/
 
-#### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
+#### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
