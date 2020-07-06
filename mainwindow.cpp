@@ -221,62 +221,57 @@ void MainWindow::init_MainContextMenu()
 
     menu = new QMenu(this);
 
-    // If you NOT use Unity(Ubuntu); See QTBUG-26840: https://bugreports.qt.io/browse/QTBUG-26840
-    // Init Widgets to show title, thumbnail of the Wallpaper and
-    // description in the context menu
-    if(_IsUnity==false) { 
-        if(!(_wallpaperfile=="NULL"))
-        {
-            QWidget* _descWidget = new QWidget();
-            QVBoxLayout* dL = new QVBoxLayout();
-            QWidgetAction * _widgetaction = new QWidgetAction(menu);
-            QLabel * _imageLabel = new QLabel();
-            QLabel * _labelTitle = new QLabel();
-            QLabel * _labelBingLocation = new QLabel("Bing Location: "+_country);
-            QLabel * _labelDescription = new QLabel(_tooltip_message);
-            _imageLabel->setAlignment(Qt::AlignCenter);
-            _labelTitle->setAlignment(Qt::AlignCenter);
-            _labelBingLocation->setAlignment(Qt::AlignCenter);
-            _labelDescription->setAlignment(Qt::AlignCenter);
+    if(!(_wallpaperfile=="NULL"))
+    {
+        QWidget* _descWidget = new QWidget();
+        QVBoxLayout* dL = new QVBoxLayout();
+        QWidgetAction * _widgetaction = new QWidgetAction(menu);
+        QLabel * _imageLabel = new QLabel();
+        QLabel * _labelTitle = new QLabel();
+        QLabel * _labelBingLocation = new QLabel("Bing Location: "+_country);
+        QLabel * _labelDescription = new QLabel(_tooltip_message);
+        _imageLabel->setAlignment(Qt::AlignCenter);
+        _labelTitle->setAlignment(Qt::AlignCenter);
+        _labelBingLocation->setAlignment(Qt::AlignCenter);
+        _labelDescription->setAlignment(Qt::AlignCenter);
 
+        if(_Provider =="Bing") {
+            _labelTitle->setText("Bing Wallpaper of the Day");
+        }
+        if(_Provider =="WindowsSpotlight") {
+            _labelTitle->setText("Wallpaper of Windows Spotlight");
+            _labelBingLocation->hide();
+        }
+
+        _descImage = _loadImage.scaled(280,150, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        _imageLabel->setPixmap(QPixmap::fromImage(_descImage));
+
+        _labelBingLocation->setWordWrap(true);
+        _labelBingLocation->setStyleSheet("font: 12pt");
+
+        _labelDescription->setWordWrap(true);
+        _labelDescription->setStyleSheet("font: 12pt; font-style: italic; text-align:center;");
+
+        _labelTitle->setStyleSheet("font: 12pt; font-weight: bold; text-align:center;");
+
+        if(wallpaper_from_Host==true){
+            _labelTitle->hide();
+            _labelDescription->hide();
             if(_Provider =="Bing") {
-                _labelTitle->setText("Bing Wallpaper of the Day");
-            }
-            if(_Provider =="WindowsSpotlight") {
-                _labelTitle->setText("Wallpaper of Windows Spotlight");
                 _labelBingLocation->hide();
             }
-
-            _descImage = _loadImage.scaled(280,150, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            _imageLabel->setPixmap(QPixmap::fromImage(_descImage));
-
-            _labelBingLocation->setWordWrap(true);
-            _labelBingLocation->setStyleSheet("font: 12pt");
-
-            _labelDescription->setWordWrap(true);
-            _labelDescription->setStyleSheet("font: 12pt; font-style: italic; text-align:center;");
-
-            _labelTitle->setStyleSheet("font: 12pt; font-weight: bold; text-align:center;");
-
-            if(wallpaper_from_Host==true){
-                _labelTitle->hide();
-                _labelDescription->hide();
-                if(_Provider =="Bing") {
-                    _labelBingLocation->hide();
-                }
-            }
-
-            dL->addWidget(_labelTitle);
-            dL->addWidget(_imageLabel);
-            dL->addWidget(_labelBingLocation);
-            dL->addWidget(_labelDescription);
-            _descWidget->setLayout(dL);
-            _descWidget->show();
-            _widgetaction->setDefaultWidget(_descWidget);
-
-            menu->addAction(_widgetaction);
-            menu->addSeparator();
         }
+
+        dL->addWidget(_labelTitle);
+        dL->addWidget(_imageLabel);
+        dL->addWidget(_labelBingLocation);
+        dL->addWidget(_labelDescription);
+        _descWidget->setLayout(dL);
+        _descWidget->show();
+        _widgetaction->setDefaultWidget(_descWidget);
+
+        menu->addAction(_widgetaction);
+        menu->addSeparator();
     }
 
     //Init provider specific context menu items
@@ -435,9 +430,6 @@ void MainWindow::init_MainContextMenu()
 void MainWindow::init_SystemTrayIcon()
 {
     mSystemTrayIcon->setIcon(QIcon(":/128.png"));
-    if(_IsUnity==true){
-        mSystemTrayIcon->setContextMenu(menu);
-    }
     mSystemTrayIcon->show();
     mSystemTrayIcon->setVisible(true);
 }
