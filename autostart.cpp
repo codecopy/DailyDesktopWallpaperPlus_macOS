@@ -28,6 +28,17 @@ void autostart::setup_plistFile()
             "</plist>\n";
 }
 
+void autostart::check_dir()
+{
+    QString _LaunchAgentsPath = QDir::homePath()+"/Library/LaunchAgents";
+
+    QDir _LaunchAgentsDir(_LaunchAgentsPath);
+    if (!_LaunchAgentsDir.exists())
+    {
+        _LaunchAgentsDir.mkpath(_LaunchAgentsPath);
+    }
+}
+
 void autostart::no_autostart()
 {
     QString mainApp_name = QApplication::applicationName();
@@ -39,6 +50,7 @@ void autostart::no_autostart()
 
 void autostart::set_autostart()
 {
+    check_dir();
     setup_plistFile();
     QString _autostart_dir = QDir::homePath()+"/Library/LaunchAgents";
     QString _filename = "com.yourcompany."+mainApp_name+".plist";

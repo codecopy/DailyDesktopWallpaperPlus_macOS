@@ -134,7 +134,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "1.0";
+    _appVersion = "1.1";
     _write_AppVersion();
 
     if (_Autostart == true)

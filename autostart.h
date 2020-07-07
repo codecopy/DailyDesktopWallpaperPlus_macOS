@@ -17,6 +17,7 @@ private:
 
     void MainAppDef();
     void set_autostartLocation();
+    void check_dir();
 };
 
 #endif // AUTOSTART_H
