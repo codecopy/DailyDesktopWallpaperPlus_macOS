@@ -56,16 +56,16 @@ void setWallpaper::_create_bashfile()
 
     _scriptfile = QDir::homePath()+"/.DailyDesktopWallpaperPlus/cw.sh";
 
-    QFile set_wallpaper_plasma(_scriptfile);
-    if(!set_wallpaper_plasma.exists(_scriptfile))
+    QFile set_wallpaper_script(_scriptfile);
+    if(!set_wallpaper_script.exists(_scriptfile))
     {
         QString content = "#!/bin/bash\n"
                 " \n"
-                "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \""+_wallpaperfile+"\"'";
+                "osascript -e 'tell application \"System Events\" to tell every desktop to set picture to \""+_wallpaperfile+"\"'";
 
-        if (set_wallpaper_plasma.open(QIODevice::Append))
+        if (set_wallpaper_script.open(QIODevice::Append))
         {
-            QTextStream stream(&set_wallpaper_plasma);
+            QTextStream stream(&set_wallpaper_script);
             stream <<content<<endl;
         }
     }

@@ -134,7 +134,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "1.1";
+    _appVersion = "1.2";
     _write_AppVersion();
 
     if (_Autostart == true)
@@ -788,7 +788,7 @@ void MainWindow::delete_backgroundimages()
             QDir deletefile;
             deletefile.setPath(filepath);
             deletefile.remove(filepath);
-            qDebug() << "Image " + filepath + "is deleted.";
+            qDebug() << "Image " + filepath + "deleted";
         }
     }
 }
