@@ -46,11 +46,12 @@ void GetBingWallpaper::bing_basefile_parse()
           if(element.tagName()=="urlBase") {
               urlBase = element.firstChild().toText().data();
           }
-
           if(element.tagName()=="copyright") {
               _copyright_bing_photo = element.firstChild().toText().data();
           }
-
+          if(element.tagName()=="copyrightlink") {
+              _copyright_link = element.firstChild().toText().data();
+          }
           if(element.tagName()=="headline") {
               _headline_bing_desc = element.firstChild().toText().data();
           }

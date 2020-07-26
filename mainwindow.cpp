@@ -134,7 +134,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "1.2";
+    _appVersion = "1.3";
     _write_AppVersion();
 
     if (_Autostart == true)
@@ -236,10 +236,10 @@ void MainWindow::init_MainContextMenu()
         _labelDescription->setAlignment(Qt::AlignCenter);
 
         if(_Provider =="Bing") {
-            _labelTitle->setText("Bing Wallpaper of the Day");
+            _labelTitle->setText(getbingwallpaper._headline_bing_desc);
         }
         if(_Provider =="WindowsSpotlight") {
-            _labelTitle->setText("Wallpaper of Windows Spotlight");
+            _labelTitle->setText(getwinspotwallpaper._wspot_title_text);
             _labelBingLocation->hide();
         }
 
@@ -281,12 +281,15 @@ void MainWindow::init_MainContextMenu()
         QPixmap _loc(":/icons/Computer.png");
         QPixmap _display(":/icons/monitor.png");
 
+        QPixmap _gotoBing(":icons/Info.png");
+        QAction * gotoBing_bing = menu->addAction(_gotoBing, trUtf8("Show description on Bing"));
         QAction * bingRefresh = menu->addAction(refresh, trUtf8("Refresh Wallpaper"));
         menu->addSeparator();
         QMenu * bingLoc = menu->addMenu(_loc, trUtf8("Bing Location"));
         QMenu * bingRes = menu->addMenu(_display, trUtf8("Resolution of the Wallpaper"));
         menu->addSeparator();
 
+        connect(gotoBing_bing, SIGNAL(triggered()), this, SLOT(_gotoBing_bing_click()));
         connect(bingRefresh, SIGNAL(triggered()), this, SLOT(_menu_bingRefresh_click()));
 
         //create submenus to select bing locations
@@ -488,6 +491,11 @@ void MainWindow::_menu_bing_wall_option_click()
     updateContextMenu();
     _setBingWallpaper();
     _winspot_wall_option->setChecked(false);
+}
+
+void MainWindow::_gotoBing_bing_click()
+{
+    QDesktopServices::openUrl(QUrl(getbingwallpaper._copyright_link));
 }
 
 void MainWindow::_menu_bingRefresh_click()
