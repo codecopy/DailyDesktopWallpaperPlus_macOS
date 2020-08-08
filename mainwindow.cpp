@@ -134,7 +134,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "1.3";
+    _appVersion = "1.4";
     _write_AppVersion();
 
     if (_Autostart == true)
@@ -787,16 +787,19 @@ void MainWindow::updateContextMenu()
 
 void MainWindow::delete_backgroundimages()
 {
-    const QDate today = QDate::currentDate();
+    const QDate today_date = QDate::currentDate();
 
-    Q_FOREACH (auto imageInfo, QDir(_OldWallpaperDir).entryInfoList(QStringList("-background.jpg"), QDir::Files)) {
+    QString filter_fname("%1%1%1%1-%1%1-%1%1-%1%1-%1%1-%1%1-background.jpg");
+    filter_fname = filter_fname.arg("[0123456789]");
+
+    Q_FOREACH (auto imageInfo, QDir(_OldWallpaperDir).entryInfoList(QStringList(filter_fname), QDir::Files)) {
         if (imageInfo.fileName().contains("keep")) continue;
-        if (imageInfo.created().date().daysTo(today) > _delete_older_than) {
+        if (imageInfo.created().date().daysTo(today_date) > _delete_older_than) {
             QString filepath = imageInfo.absoluteFilePath();
             QDir deletefile;
             deletefile.setPath(filepath);
             deletefile.remove(filepath);
-            qDebug() << "Image " + filepath + "deleted";
+            qDebug() << "Picture " + filepath + " is deleted.";
         }
     }
 }
