@@ -49,6 +49,8 @@ DailyDesktopWallpaperPlus
 #### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
 
 #### Screenshots:
-![alt text](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/exp.png/max/max/1)
+![alt text](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/3a.png/max/max/1)
+
+![alt text1](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/Ohne%20Titel.jpg/max/max/1)
 
 #### More Screenshots: https://sourceforge.net/projects/dailydesktopwallpaperplus/
