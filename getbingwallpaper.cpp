@@ -123,6 +123,7 @@ void GetBingWallpaper::write_settings()
     _settings.setValue("current_photo_dl_url", _bing_photo_url);
     _settings.setValue("current_description", _copyright_bing_photo);
     _settings.setValue("current_title", _headline_bing_desc);
+    _settings.setValue("copyright_link", _copyright_link);
     _settings.endGroup();
     _settings.sync();
 }
