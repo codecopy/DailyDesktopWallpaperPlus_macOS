@@ -138,7 +138,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "1.6";
+    _appVersion = "1.7";
     _write_AppVersion();
 
     if (_Autostart == true)
@@ -624,36 +624,46 @@ void MainWindow::_menu_france_click()
 void MainWindow::_menu_bingRes_1920x1200_click()
 {
     _selected_bing_photo_resolution = "1920x1200";
+    _resolution="1920x1200";
     _write_bing_photo_resolution_settings();
     _setBingWallpaper();
+    updateContextMenu();
 }
 
 void MainWindow::_menu_bingRes_1920x1080_click()
 {
     _selected_bing_photo_resolution = "1920x1080";
+    _resolution="1920x1080";
     _write_bing_photo_resolution_settings();
     _setBingWallpaper();
+    updateContextMenu();
 }
 
 void MainWindow::_menu_bingRes_1366x768_click()
 {
     _selected_bing_photo_resolution = "1366x768";
+    _resolution="1366x768";
     _write_bing_photo_resolution_settings();
     _setBingWallpaper();
+    updateContextMenu();
 }
 
 void MainWindow::_menu_bingRes_1280x720_click()
 {
     _selected_bing_photo_resolution = "1280x720";
+    _resolution="1280x720";
     _write_bing_photo_resolution_settings();
     _setBingWallpaper();
+    updateContextMenu();
 }
 
 void MainWindow::_menu_bingRes_1024x768_click()
 {
     _selected_bing_photo_resolution = "1024x768";
+    _resolution="1024x768";
     _write_bing_photo_resolution_settings();
     _setBingWallpaper();
+    updateContextMenu();
 }
 
 void MainWindow::_write_provider_settings()

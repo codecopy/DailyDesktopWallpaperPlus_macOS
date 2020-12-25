@@ -43,12 +43,18 @@ private:
     QString _OldWallpaperDir;
     QString _WallpaperDir;
     QString _wallpaperfile;
+    QString _resolution;
+
+    int _scaled_picture_width;
+    int _scaled_picture_height;
 
     bool running;
 
     void _init_ImageList();
-    void _read_path();
+    void _read_settings();
     void removeWallpaperFile();
+    void _setPictureRes();
+    void _readResolution();
     void closeEvent(QCloseEvent * event);
     void reject();
 };
