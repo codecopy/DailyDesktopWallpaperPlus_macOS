@@ -46,7 +46,6 @@ run the Application:
 ``` 
 DailyDesktopWallpaperPlus
 ``` 
-#### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
 
 #### Screenshots:
 ![alt text2](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/app_macOS.jpg/max/max/1)
@@ -56,3 +55,5 @@ DailyDesktopWallpaperPlus
 ![alt text1](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/Ohne%20Titel.jpg/max/max/1)
 
 #### More Screenshots: https://sourceforge.net/projects/dailydesktopwallpaperplus/
+
+#### A Linux-Version of this Application is available. GitHub: https://github.com/pgc062020/DailyDesktopWallpaperPlus
