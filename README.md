@@ -49,7 +49,7 @@ DailyDesktopWallpaperPlus
 #### Linux-Version of DailyDesktopWallpaperPlus (Github): https://github.com/pgc062020/DailyDesktopWallpaperPlus
 
 #### Screenshots:
-![alt text2](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/3a.png/max/max/1)
+![alt text2](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/app_macOS.jpg/max/max/1)
 
 ![alt text1](https://i.paste.pics/421dd9bcce2343cd10db1bba2d8dfcd5.png)
 
