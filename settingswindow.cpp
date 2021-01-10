@@ -8,6 +8,8 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QProcess>
+#include <QThread>
 
 SettingsWindow::SettingsWindow(QWidget *parent) :
     QDialog(parent),
@@ -15,6 +17,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     init_settings();
+    _set_reset=false;
 }
 
 void SettingsWindow::closeEvent(QCloseEvent * event)
@@ -52,6 +55,10 @@ void SettingsWindow::init_settings()
 
     settings.beginGroup("SETWALLPAPER");
     _AutoChange = settings.value("AutoChange","").toBool();
+    int _Parameter = settings.value("Parameter","").toInt();
+    int _time_hours = settings.value("time_hours","").toInt();
+    int _time_minutes = settings.value("time_minutes","").toInt();
+    int _time_seconds = settings.value("time_seconds","").toInt();
     settings.endGroup();
 
     ui->lineEdit_2->setEnabled(false);
@@ -94,6 +101,17 @@ void SettingsWindow::init_settings()
     if (_AutoChange == true)
     {
         ui->checkBox_3->setChecked(true);
+        ui->spinBox_2->setEnabled(true);
+        ui->spinBox_3->setEnabled(true);
+        ui->spinBox_4->setEnabled(true);
+        ui->spinBox_2->setValue(_time_hours);
+        ui->spinBox_3->setValue(_time_minutes);
+        ui->spinBox_4->setValue(_time_seconds);
+    } else
+    {
+        ui->spinBox_2->setDisabled(true);
+        ui->spinBox_3->setDisabled(true);
+        ui->spinBox_4->setDisabled(true);
     }
 }
 
@@ -106,6 +124,9 @@ void SettingsWindow::write_settings()
 
     _delete_automatically = ui->checkBox_4->checkState();
     _delete_older_than = ui->spinBox->value();
+    _time_hours = ui->spinBox_2->value();
+    _time_minutes = ui->spinBox_3->value();
+    _time_seconds = ui->spinBox_4->value();
 
     if(ui->radioButton->isChecked() == true)
     {
@@ -135,6 +156,9 @@ void SettingsWindow::write_settings()
 
     settings.beginGroup("SETWALLPAPER");
     settings.setValue("AutoChange", _AutoChange);
+    settings.setValue("time_hours", _time_hours);
+    settings.setValue("time_minutes", _time_minutes);
+    settings.setValue("time_seconds", _time_seconds);
     settings.endGroup();
     settings.sync();
 }
@@ -155,6 +179,15 @@ void SettingsWindow::on_pushButton_3_clicked()
         Autostart.no_autostart();
     }
 
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Save changes", "The application must be restarted for "
+                                                 "the changes to take effect. The application must "
+                                                 "then be run again. Do you want to Quitt the Application?",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+
     this->hide();
 }
 
@@ -164,6 +197,9 @@ void SettingsWindow::on_radioButton_clicked()
     ui->lineEdit_2->setEnabled(true);
     ui->pushButton_2->setEnabled(true);
     ui->lineEdit_2->setText(_OldWallpaperDir);
+    ui->checkBox_4->setEnabled(true);
+    ui->spinBox->setEnabled(true);
+    ui->spinBox->setValue(15);
 
     if(ui->lineEdit_2->text() == "")
     {
@@ -177,6 +213,8 @@ void SettingsWindow::on_radioButton_2_clicked()
     ui->lineEdit_2->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     ui->lineEdit_2->clear();
+    ui->checkBox_4->setDisabled(true);
+    ui->spinBox->setDisabled(true);
 }
 
 void SettingsWindow::on_pushButton_clicked()
@@ -214,4 +252,30 @@ void SettingsWindow::on_checkBox_4_clicked()
     } else {
         ui->spinBox->setEnabled(false);
     }
+}
+
+void SettingsWindow::on_checkBox_3_clicked()
+{
+    if(ui->checkBox_3->isChecked() == true) {
+        ui->spinBox_2->setEnabled(true);
+        ui->spinBox_3->setEnabled(true);
+        ui->spinBox_4->setEnabled(true);
+    } else {
+        ui->spinBox_2->setDisabled(true);
+        ui->spinBox_3->setDisabled(true);
+        ui->spinBox_4->setDisabled(true);
+    }
+}
+
+void SettingsWindow::on_pushButton_5_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Reset", "This will reset all settings to the default settings."
+                                                 "All existing wallpapers will be deleted."
+                                                 "Do you want to continue",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        _set_reset=true;
+    }
+    this->hide();
 }

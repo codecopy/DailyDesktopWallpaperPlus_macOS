@@ -14,6 +14,7 @@ class GetBingWallpaper
 public:
     QByteArray downloadedPhotoData() const;
     QString _no_internet_connection;
+
     void get_bing_wallpaper();
     void bing_basefile_parse();
     void read_settings();
@@ -29,11 +30,14 @@ private:
 
     bool download_photo;
 
-    void saveInfoFile();
+    int _picture_size_height;
+    int _picture_size_width;
+
     void fileDownloaded();
     void remove_baseFile();
     void write_settings();
     void saveImage();
+    void add_record();
 
     QString _iniFilePath;
     QString _bing_photo_url;
@@ -45,6 +49,7 @@ private:
     QString _headline_bing_desc;
     QString _copyright_link;
     QString _bing_reply;
+    QString filename;
 };
 
 #endif // GETBINGWALLPAPER_H

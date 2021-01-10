@@ -8,6 +8,7 @@ QT       += core gui
 QT       += network
 QT       += xml
 QT       += concurrent
+QT       += sql
 
 CONFIG   += app_bundle
 ICON      = AppIcon.icns
@@ -31,9 +32,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
     autostart.cpp \
-    createfilename.cpp \
     itemdelegate.cpp \
         mainwindow.cpp \
+    manage_database.cpp \
     settingswindow.cpp \
     getbingwallpaper.cpp \
     getwinspotwallpaper.cpp \
@@ -43,8 +44,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     autostart.h \
-    createfilename.h \
     itemdelegate.h \
+    manage_database.h \
     settingswindow.h \
     getbingwallpaper.h \
     getwinspotwallpaper.h \

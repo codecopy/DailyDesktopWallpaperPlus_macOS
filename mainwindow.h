@@ -7,11 +7,13 @@
 #include "getwinspotwallpaper.h"
 #include "autostart.h"
 #include "setwallpaper.h"
+#include "manage_database.h"
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QString>
 #include <QAction>
+#include <QTimer>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkAccessManager>
@@ -49,6 +51,7 @@ private slots:
     void _menu_nz_click();
     void _menu_brazil_click();
     void _menu_france_click();
+    void _menu_bingRes_UHD_click();
     void _menu_bingRes_1920x1200_click();
     void _menu_bingRes_1920x1080_click();
     void _menu_bingRes_1366x768_click();
@@ -58,10 +61,12 @@ private slots:
     void _show_photobrowser_click();
     void _gotoBing_click();
     void _gotoBing_bing_click();
+    void _reset();
     void slotActive(QSystemTrayIcon::ActivationReason r);
 
 private:
     Ui::MainWindow *ui;
+    manage_database ManageDatabase;
     GetBingWallpaper getbingwallpaper;
     GetWinSpotWallpaper getwinspotwallpaper;
     setWallpaper _setwall;
@@ -70,6 +75,7 @@ private:
     QMenu * menu;
     QNetworkReply *reply;
     QNetworkAccessManager dl_manager;
+    QTimer *_autoChangeTimer = NULL;
 
     QString _iniFilePath;
     QString _selected_binglocation;
@@ -96,17 +102,24 @@ private:
 
     int _Parameter;
     int _delete_older_than;
+    int _time_hours;
+    int _time_minutes;
+    int _time_seconds;
+    int _time_milliseconds;
 
-    bool wallpaper_from_Host;
     bool _Autostart;
     bool _SaveOldWallpaper;
     bool _AutoChange;
-    bool _IsUnity;
+    bool _create_menu_item;
     bool _delete_automatically;
+    bool _photobrowser_specific_values;
+    bool _set_reset;
 
     void set_values();
     void set_autostart();
     void no_autostart();
+    void set_autoChange();
+    void no_autoChange();
     void _write_provider_settings();
     void _write_binglocation_settings();
     void _write_bing_photo_resolution_settings();
@@ -119,7 +132,6 @@ private:
     void set_tooltip_string();
     void load_wallpaper();
     void _write_AppVersion();
-    void init_descriptionImage();
     void init_MainContextMenu();
     void init_SystemTrayIcon();
     void updateContextMenu();
@@ -127,6 +139,7 @@ private:
     void checkFiles();
     void delete_backgroundimages();
     void load_bgp_specific_settings();
+    void manage_wallpapers();
 };
 
 #endif // MAINWINDOW_H
