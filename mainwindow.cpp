@@ -23,9 +23,28 @@
 #include <QDate>
 #include <QThread>
 
+void MainWindow::ScreenLocked(CFNotificationCenterRef center, void *observer, CFNotificationName name, const void *object, CFDictionaryRef userInfo)
+{
+    MainWindow *pMainWin = (MainWindow *)observer;
+    pMainWin->_screenCurrentlyLocked = true;
+}
+
+void MainWindow::ScreenUnlocked(CFNotificationCenterRef center, void *observer, CFNotificationName name, const void *object, CFDictionaryRef userInfo)
+{
+    MainWindow *pMainWin = (MainWindow *)observer;
+    pMainWin->_screenCurrentlyLocked = false;
+    if (pMainWin->_needsRefreshAfterUnlock)
+    {
+        pMainWin->_needsRefreshAfterUnlock = false;
+        pMainWin->load_wallpaper();
+    }
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    _screenCurrentlyLocked(false),
+    _needsRefreshAfterUnlock(false)
 {
     ui->setupUi(this);
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, false);
@@ -51,6 +70,25 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     connect(mSystemTrayIcon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(slotActive(QSystemTrayIcon::ActivationReason)));
+
+    QString lockedStr = QString("com.apple.screenIsLocked");
+    QString unlockedStr = QString("com.apple.screenIsUnlocked");
+
+    CFNotificationCenterAddObserver(
+                CFNotificationCenterGetDistributedCenter(),
+                this,
+                MainWindow::ScreenLocked,
+                lockedStr.toCFString(),
+                nil,
+                CFNotificationSuspensionBehaviorDeliverImmediately);
+
+    CFNotificationCenterAddObserver(
+                CFNotificationCenterGetDistributedCenter(),
+                this,
+                MainWindow::ScreenUnlocked,
+                unlockedStr.toCFString(),
+                nil,
+                CFNotificationSuspensionBehaviorDeliverImmediately);
 }
 
 MainWindow::~MainWindow()
@@ -144,7 +182,7 @@ void MainWindow::set_values()
     _Provider = settings.value("Provider","").toString();
     settings.endGroup();
 
-    _appVersion = "2.0";
+    _appVersion = "2.1";
     _write_AppVersion();
 
     if (_Autostart == true)
@@ -182,11 +220,20 @@ void MainWindow::check_dir()
 
 void MainWindow::load_wallpaper()
 {
-    if(_Provider =="Bing") {
-        _setBingWallpaper();
+    // If screen is locked, refreshing WallPaper doesn't work,
+    // refresh it when they unlock their session...
+    if (_screenCurrentlyLocked)
+    {
+        _needsRefreshAfterUnlock = true;
     }
-    if(_Provider =="WindowsSpotlight") {
-        _setWinSpotWallpaper();
+    else
+    {
+        if(_Provider =="Bing") {
+            _setBingWallpaper();
+        }
+        if(_Provider =="WindowsSpotlight") {
+            _setWinSpotWallpaper();
+        }
     }
 }
 
@@ -202,7 +249,7 @@ void MainWindow::set_autostart()
 
 void MainWindow::set_autoChange()
 {
-    _time_milliseconds = (_time_hours*3600000)+(_time_minutes*3600)+(_time_seconds*1000);
+    _time_milliseconds = (_time_hours*3600000)+(_time_minutes*60000)+(_time_seconds*1000);
     if (_AutoChange && _autoChangeTimer == NULL)
     {
         _autoChangeTimer = new QTimer(this);

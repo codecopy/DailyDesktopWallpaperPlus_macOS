@@ -18,6 +18,8 @@
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkAccessManager>
 
+#include <CoreFoundation/CoreFoundation.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -31,6 +33,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    static void ScreenLocked(CFNotificationCenterRef center, void *observer, CFNotificationName name, const void *object, CFDictionaryRef userInfo);
+    static void ScreenUnlocked(CFNotificationCenterRef center, void *observer, CFNotificationName name, const void *object, CFDictionaryRef userInfo);
 
 signals:
     void downloaded();
@@ -114,6 +119,8 @@ private:
     bool _delete_automatically;
     bool _photobrowser_specific_values;
     bool _set_reset;
+    bool _screenCurrentlyLocked;
+    bool _needsRefreshAfterUnlock;
 
     void set_values();
     void set_autostart();
