@@ -40,7 +40,7 @@ void setWallpaper::_set_wallpaper()
         //check if a file is in the wallpaper directory to avoid a crash
         if (!(minFile > totalfiles))
         {
-            _wallpaperfile = _WallpaperDir+"/"+WallpaperList[0].baseName()+".jpg";
+            _wallpaperfile = _wallpaperfilename;
             //check if a file is a wallpaperfile of DailyDesktopWallpaperPlus
             if(_wallpaperfile.contains("-background.jpg"))
             {
