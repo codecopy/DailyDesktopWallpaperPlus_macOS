@@ -8,8 +8,8 @@
 
 #### Features:
 
- * Download Bing's daily photo from 10 Countries and set automatically as your wallpaper.
- * Download and set the daily photos of Windows Spotlight automatically as your wallpaper.
+ * Allows to use the daily photo from Bing as wallpaper on your Mac.
+ * Allows to use the daily photo from Windows-Spotlight as wallpaper on your Mac.
  * Load and set existing Wallpapers.
  * Automatic change of the wallpaper.
 
