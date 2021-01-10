@@ -51,6 +51,8 @@ DailyDesktopWallpaperPlus
 #### Screenshots:
 ![alt text2](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/3a.png/max/max/1)
 
+![alt text1](https://paste.pics/421dd9bcce2343cd10db1bba2d8dfcd5)
+
 ![alt text1](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/Ohne%20Titel.jpg/max/max/1)
 
 #### More Screenshots: https://sourceforge.net/projects/dailydesktopwallpaperplus/
