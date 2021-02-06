@@ -58,7 +58,6 @@ void SettingsWindow::init_settings()
     int _Parameter = settings.value("Parameter","").toInt();
     int _time_hours = settings.value("time_hours","").toInt();
     int _time_minutes = settings.value("time_minutes","").toInt();
-    int _time_seconds = settings.value("time_seconds","").toInt();
     settings.endGroup();
 
     ui->lineEdit_2->setEnabled(false);
@@ -101,17 +100,12 @@ void SettingsWindow::init_settings()
     if (_AutoChange == true)
     {
         ui->checkBox_3->setChecked(true);
-        ui->spinBox_2->setEnabled(true);
-        ui->spinBox_3->setEnabled(true);
-        ui->spinBox_4->setEnabled(true);
-        ui->spinBox_2->setValue(_time_hours);
-        ui->spinBox_3->setValue(_time_minutes);
-        ui->spinBox_4->setValue(_time_seconds);
+        ui->timeEdit->setEnabled(true);
+        QTime time(_time_hours, _time_minutes);
+        ui->timeEdit->setTime(time);
     } else
     {
-        ui->spinBox_2->setDisabled(true);
-        ui->spinBox_3->setDisabled(true);
-        ui->spinBox_4->setDisabled(true);
+        ui->timeEdit->setDisabled(true);
     }
 }
 
@@ -124,9 +118,8 @@ void SettingsWindow::write_settings()
 
     _delete_automatically = ui->checkBox_4->checkState();
     _delete_older_than = ui->spinBox->value();
-    _time_hours = ui->spinBox_2->value();
-    _time_minutes = ui->spinBox_3->value();
-    _time_seconds = ui->spinBox_4->value();
+    _time_hours = ui->timeEdit->time().hour();
+    _time_minutes = ui->timeEdit->time().minute();
 
     if(ui->radioButton->isChecked() == true)
     {
@@ -158,7 +151,6 @@ void SettingsWindow::write_settings()
     settings.setValue("AutoChange", _AutoChange);
     settings.setValue("time_hours", _time_hours);
     settings.setValue("time_minutes", _time_minutes);
-    settings.setValue("time_seconds", _time_seconds);
     settings.endGroup();
     settings.sync();
 }
@@ -257,13 +249,9 @@ void SettingsWindow::on_checkBox_4_clicked()
 void SettingsWindow::on_checkBox_3_clicked()
 {
     if(ui->checkBox_3->isChecked() == true) {
-        ui->spinBox_2->setEnabled(true);
-        ui->spinBox_3->setEnabled(true);
-        ui->spinBox_4->setEnabled(true);
+        ui->timeEdit->setEnabled(true);
     } else {
-        ui->spinBox_2->setDisabled(true);
-        ui->spinBox_3->setDisabled(true);
-        ui->spinBox_4->setDisabled(true);
+        ui->timeEdit->setDisabled(true);
     }
 }
 

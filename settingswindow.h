@@ -4,6 +4,7 @@
 #include <autostart.h>
 #include <QDialog>
 #include <QString>
+#include <QTime>
 
 namespace Ui {
 class SettingsWindow;
@@ -48,7 +49,6 @@ private:
     int _delete_older_than;
     int _time_hours;
     int _time_minutes;
-    int _time_seconds;
 
     void init_settings();
     void write_settings();

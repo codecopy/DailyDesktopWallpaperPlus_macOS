@@ -22,7 +22,6 @@ void setWallpaper::_read_settings()
 
     settings.beginGroup("SETWALLPAPER");
     _AutoChange = settings.value("AutoChange","").toBool();
-    _Parameter = settings.value("Parameter","").toInt();
     settings.endGroup();
 }
 
