@@ -33,19 +33,16 @@ Download Qt here: https://www.qt.io/download
 
 #### Build instructions:
 
-Compile the sources:
+Build the Application with the QT Creator IDE.
+
+Edit the 'info.plist' file in the Application-Bundle, that was just builded:
+
 ```
-qmake
-make
+<key>LSUIElement</key>
+<string>1</string>
 ```
-run as root:
-``` 
-make install
-``` 
-run the Application: 
-``` 
-DailyDesktopWallpaperPlus
-``` 
+
+This option will hide the icon of the Application in the dock.
 
 #### Screenshots:
 ![alt text2](https://a.fsdn.com/con/app/proj/dailydesktopwallpaperplus/screenshots/app_macOS.jpg/max/max/1)
