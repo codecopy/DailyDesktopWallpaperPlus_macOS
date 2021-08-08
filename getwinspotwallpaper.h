@@ -49,6 +49,8 @@ private:
     QString _wspot_title_text;
     QString _bing_searchlink;
     QString filename;
+    QString _thumbfiledir;
+    QString _thumb_filename;
 };
 
 #endif // GETWINSPOTWALLPAPER_H
