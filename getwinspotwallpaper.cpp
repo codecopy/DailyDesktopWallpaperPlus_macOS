@@ -189,8 +189,8 @@ void GetWinSpotWallpaper::saveImage()
 
 
     // Create a thumbnail picture of the wallpaper for photobrowser;
-    int _thumb_size_height = (photo_wallpaper.size().height()/100)*9;
-    int _thumb_size_width =(photo_wallpaper.size().width()/100)*9;
+    int _thumb_size_height = 258;
+    int _thumb_size_width = 145;
 
     _thumb_filename = QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"-thumb.jpg";
 

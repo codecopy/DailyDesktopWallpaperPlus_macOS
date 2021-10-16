@@ -188,28 +188,8 @@ void GetBingWallpaper::saveImage()
     _picture_size_width = photo_wallpaper.size().width();
 
     // Create a thumbnail picture of the wallpaper for photobrowser;
-    int _thumb_size_height;
-    int _thumb_size_width;
-
-    if(_bingresolution=="1024x768") {
-        _thumb_size_height = (_picture_size_height/100)*15;
-        _thumb_size_width =  (_picture_size_width/100)*15;
-    } else if(_bingresolution=="1280x720") {
-        _thumb_size_height = (_picture_size_height/100)*15;
-        _thumb_size_width =  (_picture_size_width/100)*15;
-    } else if(_bingresolution=="1366x768") {
-        _thumb_size_height = (_picture_size_height/100)*15;
-        _thumb_size_width =  (_picture_size_width/100)*15;
-    } else if(_bingresolution=="1920x1080") {
-        _thumb_size_height = (_picture_size_height/100)*9;
-        _thumb_size_width =  (_picture_size_width/100)*9;
-    } else if(_bingresolution=="1920x1200") {
-        _thumb_size_height = (_picture_size_height/100)*9;
-        _thumb_size_width =  (_picture_size_width/100)*9;
-    } else if(_bingresolution=="UHD") {
-        _thumb_size_height = 172;
-        _thumb_size_width =  97;
-    };
+    int _thumb_size_height = 258;
+    int _thumb_size_width = 145;
 
     _thumb_filename = QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"-thumb.jpg";
 

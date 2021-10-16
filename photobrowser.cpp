@@ -31,8 +31,8 @@ PhotoBrowser::PhotoBrowser(QWidget *parent) :
     _read_settings();
 
     //Init image list
-    int _scaled_picture_width = 160;
-    int _scaled_picture_height = 90;
+    int _scaled_picture_width = 258;
+    int _scaled_picture_height = 145;
     ui->listView->setResizeMode(QListView::Adjust);
     ui->listView->setFlow(QListView::LeftToRight);
     ui->listView->setSpacing(15);
